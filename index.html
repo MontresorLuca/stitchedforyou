@@ -1,0 +1,346 @@
+```html
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STITCHED FOR YOU</title>
+<style>
+*{box-sizing:border-box}:root{--bg:#f7f5f1;--dark:#25231f;--muted:#777;--border:#e3ddd5;--soft:#f8f6f2;--white:#fff}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--dark);font-family:Arial,sans-serif}button{font-family:inherit;cursor:pointer}img{max-width:100%;display:block}
+.navbar{position:fixed;top:0;left:0;right:0;height:70px;background:rgba(247,245,241,.94);backdrop-filter:blur(12px);border-bottom:1px solid #e8e2da;display:flex;align-items:center;justify-content:space-between;padding:0 5%;z-index:900}.logo{font:500 20px Georgia,serif;letter-spacing:2px}.nav-links{display:flex;gap:8px}.nav-links button{background:none;border:0;padding:10px 14px;font-size:14px;color:var(--dark)}.nav-links button:hover{text-decoration:underline}.menu{display:none;background:none;border:0;font-size:25px}
+.page{display:none;min-height:100vh;padding-top:70px}.page.active{display:block}
+.hero{min-height:calc(100vh - 70px);display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px}.hero-inner{max-width:850px}.hero-logo{width:230px;height:230px;object-fit:contain;margin:0 auto 30px}.hero h1{font:500 56px Georgia,serif;letter-spacing:3px;margin:0 0 25px}.slogan{font:400 25px Georgia,serif;line-height:1.55;max-width:750px;margin:auto}.hero-text{max-width:670px;margin:25px auto 35px;color:#625d56;line-height:1.8;font-size:15px}.btn{border:0;border-radius:9px;padding:13px 20px;font-weight:bold;background:var(--dark);color:#fff}.btn.light{background:transparent;border:1px solid var(--dark);color:var(--dark)}
+.home-section{padding:90px 6%;text-align:center}.home-section h2{font:500 38px Georgia,serif;margin:0 0 35px}.featured{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.featured img{width:100%;height:380px;object-fit:cover;border-radius:13px}
+.gallery-head{text-align:center;padding:70px 20px 40px}.gallery-head h1{font:500 50px Georgia,serif;margin:0 0 12px}.gallery-head p{color:var(--muted);margin:0}.gallery{padding:0 5% 80px;columns:4 220px;column-gap:16px}.gallery-item{break-inside:avoid;margin-bottom:16px;position:relative;overflow:hidden;border-radius:13px;cursor:pointer;background:#eee}.gallery-item img{width:100%;transition:.35s}.gallery-item:hover img{transform:scale(1.04)}.gallery-item span{position:absolute;bottom:10px;left:10px;background:#fffddf;padding:7px 11px;border-radius:20px;font-size:12px}
+.about{max-width:1100px;margin:auto;padding:80px 6%;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.about-photo{height:620px;border-radius:15px;overflow:hidden;background:#e8e1d7}.about-photo img{width:100%;height:100%;object-fit:cover}.about-text h1{font:500 54px Georgia,serif;margin:0 0 25px}.about-text p{font-size:15px;line-height:1.9;color:#625d56;margin:0 0 18px}
+.order-wrap{max-width:1100px;margin:auto;padding:35px 24px}.order-head{text-align:center;margin-bottom:20px}.order-head h1{font:500 34px Georgia,serif;margin:0 0 7px}.order-head p{color:#777;margin:0}.steps{display:flex;gap:6px;margin:20px 0}.step{flex:1;text-align:center;padding:9px 5px;border-bottom:2px solid #ddd7cf;color:#999;font-size:13px}.step.active{color:#222;border-color:#222;font-weight:bold}.layout{display:grid;grid-template-columns:1fr 310px;gap:20px}.panel,.summary{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px}.summary{height:max-content;position:sticky;top:82px}.panel h2,.summary h3{font-family:Georgia,serif;font-weight:500}.panel h2{font-size:25px;margin:0 0 6px}.help{font-size:14px;color:#777;margin:0 0 18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.opt{border:2px solid transparent;border-radius:13px;overflow:hidden;cursor:pointer;background:#fff;position:relative;transition:.15s}.opt:hover,.yarn-card:hover{transform:translateY(-1px)}.opt.sel,.yarn-card.sel{border-color:#222}.opt img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.name{font-weight:bold;padding:10px 11px 3px}.meta{font-size:12px;color:#777;padding:0 11px 11px}.tick{display:none;position:absolute;right:9px;top:9px;background:#222;color:#fff;border-radius:50%;width:25px;height:25px;text-align:center;line-height:25px;z-index:4}.sel .tick,.yarn-card.sel .yarn-tick{display:block}
+.info-btn,.zoom-btn{position:absolute;right:8px;top:8px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(255,255,255,.94);color:#25231f;font-size:17px;font-weight:bold;line-height:30px;padding:0;z-index:5;box-shadow:0 2px 8px #0002;cursor:pointer}.info-btn:hover,.zoom-btn:hover{background:#25231f;color:#fff}
+.categories{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.category{border:1px solid #d8d2ca;background:#f8f6f2;color:#555;padding:10px 15px;border-radius:20px;cursor:pointer;font-size:13px}.category:hover{background:#eeeae4}.category.active{background:#25231f;color:#fff;border-color:#25231f;font-weight:bold}
+.yarn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.yarn-card{border:2px solid transparent;border-radius:13px;overflow:hidden;cursor:pointer;background:#fff;position:relative;transition:.15s}.yarn-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}.yarn-name{padding:9px 8px 11px;text-align:center;font-size:13px;font-weight:bold}.yarn-tick{display:none;position:absolute;right:9px;top:9px;background:#222;color:#fff;border-radius:50%;width:25px;height:25px;text-align:center;line-height:25px;z-index:4}
+.sizebox{padding:25px;text-align:center;background:#f8f6f2}.sizebox b{font:24px Georgia,serif}.sizebox small{display:block;color:#777;margin-top:5px}
+.preview{border-radius:12px;overflow:hidden;background:#eee;margin-bottom:15px}.preview img{display:block;width:100%;aspect-ratio:1;object-fit:cover}.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:14px}.row span{color:#777}.price{display:flex;justify-content:space-between;font-size:19px;font-weight:bold;padding:17px 0}.actions{display:flex;gap:9px;margin-top:20px}.actions button,.confirm{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;cursor:pointer}.back{background:#eeeae4}.next,.confirm{background:#25231f;color:#fff;flex:1}button:disabled{opacity:.4;cursor:not-allowed}.done{display:none;margin-top:16px;padding:14px;border:1px solid #ddd7cf;border-radius:10px;background:#faf8f4;text-align:center;font-size:14px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;padding:25px;align-items:center;justify-content:center}.modal.open{display:flex}.modal-box{position:relative;background:#fff;border-radius:16px;max-width:850px;width:100%;max-height:92vh;overflow:auto;padding:18px}.modal-close{position:absolute;right:12px;top:12px;width:36px;height:36px;border:0;border-radius:50%;background:#25231f;color:#fff;font-size:23px;line-height:36px;padding:0;z-index:5}.modal-image{display:block;width:100%;max-height:65vh;object-fit:contain;border-radius:10px}.modal-info{padding:15px 5px 5px}.modal-info h2{margin:0 0 8px;font-family:Georgia,serif}.modal-info p{color:#666;line-height:1.6;margin:0}
+footer{background:#25231f;color:#fff;text-align:center;padding:40px 20px;font-size:13px;line-height:1.8}
+@media(max-width:760px){.navbar{height:62px;padding:0 5%}.nav-links{display:none;position:absolute;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid #e3ddd5;flex-direction:column;padding:10px 5%}.nav-links.open{display:flex}.nav-links button{text-align:left;padding:13px}.menu{display:block}.page{padding-top:62px}.hero{min-height:calc(100vh - 62px);padding:45px 20px}.hero-logo{width:175px;height:175px}.hero h1{font-size:39px}.slogan{font-size:20px}.featured{grid-template-columns:1fr}.featured img{height:330px}.gallery{columns:2 140px;column-gap:10px}.gallery-item{margin-bottom:10px}.about{grid-template-columns:1fr;gap:35px}.about-photo{height:450px}.about-text h1{font-size:42px}.order-wrap{padding:20px 14px}.layout{grid-template-columns:1fr}.summary{position:static}.grid{grid-template-columns:repeat(2,1fr)}.yarn-grid{grid-template-columns:repeat(2,1fr)}.order-head h1{font-size:29px}.modal{padding:12px}.modal-box{padding:10px}.modal-image{max-height:65vh}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo">STITCHED FOR YOU</div>
+<button class="menu" onclick="toggleMenu()">☰</button>
+<div class="nav-links" id="navLinks">
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('gallery')">Galleria</button>
+<button onclick="showPage('order')">Ordina ora</button>
+<button onclick="showPage('about')">Chi sono</button>
+</div>
+</nav>
+
+<section id="home" class="page active">
+<div class="hero">
+<div class="hero-inner">
+<img src="StitchedForYou.png" class="hero-logo" alt="STITCHED FOR YOU">
+<h1>STITCHED FOR YOU</h1>
+<div class="slogan">La tua immaginazione, le mie mani.</div>
+<p class="hero-text">L'obiettivo di <b>STITCHED FOR YOU</b> è quello di creare progetti unici partendo dalle tue idee.<br><br>Tutti i prodotti sono realizzati interamente a mano con cura, passione e attenzione ai dettagli 🖤</p>
+<button class="btn" onclick="showPage('gallery')">SCOPRI LA GALLERIA</button>
+<button class="btn light" onclick="showPage('order')">ORDINA LA TUA</button>
+</div>
+</div>
+<div class="home-section">
+<h2>Creazioni uniche</h2>
+<div class="featured">
+<img src="Modelli/modello1.png" alt="Creazione">
+<img src="Modelli/modello2.png" alt="Creazione">
+<img src="Modelli/modello3.png" alt="Creazione">
+</div>
+</div>
+</section>
+
+<section id="gallery" class="page">
+<div class="gallery-head">
+<h1>Galleria</h1>
+<p>Una selezione delle creazioni STITCHED FOR YOU.</p>
+</div>
+<div class="gallery">
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello.png" alt="Creazione"><span>Borsa</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello1.png" alt="Creazione"><span>Borsa</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello2.png" alt="Creazione"><span>Borsa</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello3.png" alt="Creazione"><span>Dettaglio</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello4.jpg" alt="Creazione"><span>Creazione</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello5.png" alt="Creazione"><span>Dettaglio</span></div>
+<div class="gallery-item" onclick="openGallery(this)"><img src="Modelli/modello6.png" alt="Creazione"><span>Creazione</span></div>
+</div>
+</section>
+
+<section id="order" class="page">
+<div class="order-wrap">
+<div class="order-head">
+<h1>Configura la tua borsa</h1>
+<p>Scegli ogni dettaglio e crea la tua combinazione.</p>
+</div>
+<div class="steps" id="steps"></div>
+<div class="layout">
+<main class="panel">
+<div id="content"></div>
+<div class="actions">
+<button class="back" id="back" onclick="prev()">Indietro</button>
+<button class="next" id="next" onclick="next()">Continua</button>
+</div>
+<div class="done" id="done"><b>Configurazione completata!</b><br>La tua configurazione è stata registrata.</div>
+</main>
+<aside class="summary">
+<h3>Riepilogo</h3>
+<div class="preview"><img id="preview" alt="Anteprima"></div>
+<div class="row"><span>Modello</span><b id="sModel">—</b></div>
+<div class="row"><span>Categoria</span><b id="sCategory">—</b></div>
+<div class="row"><span>Gomitolo</span><b id="sYarn">—</b></div>
+<div class="row"><span>Dimensione</span><b id="sSize">—</b></div>
+<div class="price"><span>Prezzo</span><span id="sPrice">—</span></div>
+<button class="confirm" id="confirm" onclick="confirmOrder()" style="width:100%;display:none">Conferma configurazione</button>
+</aside>
+</div>
+</div>
+</section>
+
+<section id="about" class="page">
+<div class="about">
+<div class="about-photo"><img src="Immagini/io.jpg" alt="La creatrice di STITCHED FOR YOU"></div>
+<div class="about-text">
+<h1>Chi sono</h1>
+<p>Ciao, sono <b>[IL TUO NOME]</b>, la persona dietro <b>STITCHED FOR YOU</b>.</p>
+<p>Tutto nasce dalla mia passione per il lavoro manuale, dalla voglia di creare qualcosa di unico e dalla possibilità di trasformare un'idea in un oggetto reale, fatto interamente a mano.</p>
+<p>Ogni creazione viene realizzata con cura, passione e attenzione ai dettagli. Mi piace pensare che ogni borsa abbia qualcosa di speciale, proprio perché nasce dall'incontro tra la mia creatività e la tua idea.</p>
+<p><b>STITCHED FOR YOU</b> significa proprio questo: creazioni pensate per te, realizzate con le mie mani. 🖤</p>
+<button class="btn" onclick="showPage('order')">CREA LA TUA BORSA</button>
+</div>
+</div>
+</section>
+
+<footer>STITCHED FOR YOU 🖤<br>Fatto a mano. Pensato per te.</footer>
+
+<div class="modal" id="modal" onclick="closeModal(event)">
+<div class="modal-box">
+<button class="modal-close" onclick="closeModal()">×</button>
+<img class="modal-image" id="modalImage" alt="">
+<div class="modal-info" id="modalInfo"></div>
+</div>
+</div>
+
+<script>
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("navLinks").classList.remove("open");window.scrollTo({top:0,behavior:"smooth"})}
+function toggleMenu(){document.getElementById("navLinks").classList.toggle("open")}
+
+const GOMITOLI={
+"Kaleido":[
+{name:"Wiggly 002",image:"Gomitoli/Kaleido/Kaleido_argento.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_beige.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_bordeaux.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_mattone.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_nero.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_oro.jpg"},
+{name:"Wiggly 009",image:"Gomitoli/Kaleido/Kaleido_blu.jpg"}
+],
+"Thai":[
+{name:"Wiggly 098",image:"Gomitoli/Thai/Thai_bianco.jpg"},
+{name:"Wiggly 105",image:"Gomitoli/Thai/Thai_nero.jpg"},
+{name:"Wiggly 116",image:"Gomitoli/Thai/Thai_petrolio.jpg"},
+{name:"Wiggly 117",image:"Gomitoli/Thai/Thai04.jpg"},
+{name:"Wiggly 120",image:"Gomitoli/Thai/Thai09.jpg"},
+{name:"Wiggly 151",image:"Gomitoli/Thai/Thai012.jpg"},
+{name:"Wiggly 196",image:"Gomitoli/Thai/Thai016.jpg"},
+{name:"Wiggly 253",image:"Gomitoli/Thai/Thai048.jpg"},
+{name:"Wiggly 280",image:"Gomitoli/Thai/Thai071.jpg"},
+{name:"Wiggly 297",image:"Gomitoli/Thai/Thai106.jpg"},
+{name:"Wiggly 307",image:"Gomitoli/Thai/Thai168.jpg"},
+{name:"Wiggly 361",image:"Gomitoli/Thai/Thai187.jpg"},
+{name:"Wiggly 416",image:"Gomitoli/Thai/Thai196.jpg"},
+{name:"Wiggly 023",image:"Gomitoli/Thai/Thai280.jpg"},
+{name:"Wiggly 044",image:"Gomitoli/Thai/Thai307.jpg"},
+{name:"Wiggly 046",image:"Gomitoli/Thai/Thai412.jpg"},
+{name:"Wiggly 058",image:"Gomitoli/Thai/Thai437.jpg"},
+{name:"Wiggly 075",image:"Gomitoli/Thai/Thai482.jpg"}
+],
+"Lycra":[
+{name:"Wiggly 098",image:"Gomitoli/Wiggly098.jpg"},
+{name:"Wiggly 105",image:"Gomitoli/Wiggly105.jpg"},
+{name:"Wiggly 116",image:"Gomitoli/Wiggly116.jpg"},
+{name:"Wiggly 117",image:"Gomitoli/Wiggly117.jpg"},
+{name:"Wiggly 120",image:"Gomitoli/Wiggly120.jpg"},
+{name:"Wiggly 151",image:"Gomitoli/Wiggly151.jpg"},
+{name:"Wiggly 196",image:"Gomitoli/Wiggly196.jpg"},
+{name:"Wiggly 253",image:"Gomitoli/Wiggly253.jpg"},
+{name:"Wiggly 280",image:"Gomitoli/Wiggly280.jpg"},
+{name:"Wiggly 297",image:"Gomitoli/Wiggly297.jpg"},
+{name:"Wiggly 307",image:"Gomitoli/Wiggly307.jpg"},
+{name:"Wiggly 361",image:"Gomitoli/Wiggly361.jpg"},
+{name:"Wiggly 416",image:"Gomitoli/Wiggly416.jpg"},
+{name:"Wiggly 023",image:"Gomitoli/Wiggly023.jpg"},
+{name:"Wiggly 044",image:"Gomitoli/Wiggly044.jpg"},
+{name:"Wiggly 046",image:"Gomitoli/Wiggly046.jpg"},
+{name:"Wiggly 058",image:"Gomitoli/Wiggly058.jpg"},
+{name:"Wiggly 075",image:"Gomitoli/Wiggly075.jpg"},
+{name:"Wiggly 002",image:"Gomitoli/Wiggly002.jpg"},
+{name:"Wiggly 004",image:"Gomitoli/Wiggly004.jpg"},
+{name:"Wiggly 009",image:"Gomitoli/Wiggly009.jpg"}
+],
+"Eco Daino":[
+{name:"Wiggly 307",image:"Gomitoli/EcoDaino/EcoDaino254.jpg"},
+{name:"Wiggly 361",image:"Gomitoli/EcoDaino/EcoDaino255.jpg"},
+{name:"Wiggly 416",image:"Gomitoli/EcoDaino/EcoDaino258.jpg"},
+{name:"Wiggly 023",image:"Gomitoli/EcoDaino/EcoDaino260.jpg"},
+{name:"Wiggly 044",image:"Gomitoli/EcoDaino/EcoDaino261.jpg"},
+{name:"Wiggly 046",image:"Gomitoli/EcoDaino/EcoDaino262.jpg"},
+{name:"Wiggly 058",image:"Gomitoli/EcoDaino/EcoDaino263.jpg"},
+{name:"Wiggly 075",image:"Gomitoli/EcoDaino/EcoDaino264.jpg"},
+{name:"Wiggly 002",image:"Gomitoli/EcoDaino/EcoDaino265.jpg"}
+],
+"Eco Pelle":[
+{name:"Wiggly 307",image:"Gomitoli/EcoPelle/EcoPelle601.jpg"},
+{name:"Wiggly 361",image:"Gomitoli/EcoPelle/EcoPelle605.jpg"},
+{name:"Wiggly 416",image:"Gomitoli/EcoPelle/EcoPelle606.jpg"},
+{name:"Wiggly 023",image:"Gomitoli/EcoPelle/EcoPelle607.jpg"},
+{name:"Wiggly 044",image:"Gomitoli/EcoPelle/EcoPelle608.jpg"},
+{name:"Wiggly 046",image:"Gomitoli/EcoPelle/EcoPelle609.jpg"}
+]};
+
+const DATA={
+"Napoli":{base:89,image:"Modelli/modello.png",info:"La borsa Napoli è un modello elegante e versatile, realizzato artigianalmente. Scegli il gomitolo e la dimensione per personalizzare la tua borsa.",sizes:{"Piccola":["20 × 15 cm",0],"Media":["28 × 20 cm",15],"Grande":["35 × 25 cm",30]}},
+"Venezia":{base:69,image:"Modelli/modello1.png",info:"La borsa Venezia è un modello compatto e raffinato, ideale per un look elegante e quotidiano.",sizes:{"Unica":["22 × 14 cm",0]}},
+"Milano":{base:109,image:"Modelli/modello3.png",info:"La borsa Milano è un modello più capiente e strutturato, pensato per chi desidera spazio senza rinunciare allo stile.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
+"Roma":{base:109,image:"Modelli/modello4.jpg",info:"La borsa Roma combina linee classiche e praticità, con diverse possibilità di personalizzazione.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
+"Taormina":{base:109,image:"Modelli/modello5.png",info:"La borsa Taormina è caratterizzata da uno stile elegante e contemporaneo.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
+"Modena":{base:109,image:"Modelli/modello6.png",info:"La borsa Modena è un modello versatile e capiente, adatto a diverse occasioni.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}}
+};
+
+const labels=["Modello","Gomitolo","Dimensione"];
+let step=0;
+let sel={model:null,category:"Categoria 1",yarn:null,yarnImage:null,size:null};
+const $=id=>document.getElementById(id);
+const product=()=>sel.model?DATA[sel.model]:null;
+
+function renderSteps(){$("steps").innerHTML=labels.map((x,i)=>`<div class="step ${i===step?"active":""}">${i+1}. ${x}</div>`).join("")}
+
+function option(name,meta,img,selected,fn,info){return `<div class="opt ${selected?"sel":""}" onclick="${fn}"><span class="tick">✓</span>${img?`<img src="${img}" alt="${name}">`:""}${info?`<button class="info-btn" onclick="event.stopPropagation();openBagInfo('${escapeValue(name)}')">i</button>`:""}<div class="name">${name}</div><div class="meta">${meta||""}</div></div>`}
+
+function render(){
+renderSteps();
+let html="";
+if(step===0)html=`<h2>1. Scegli il modello</h2><p class="help">Clicca sulla borsa che preferisci.</p><div class="grid">${Object.entries(DATA).map(([n,p])=>option(n,"A partire da €"+p.base,p.image,sel.model===n,`chooseModel('${escapeValue(n)}')`,p.info)).join("")}</div>`;
+if(step===1){
+const cats=Object.keys(GOMITOLI);
+if(!sel.category||!GOMITOLI[sel.category])sel.category=cats[0];
+const yarns=GOMITOLI[sel.category];
+html=`<h2>2. Scegli il gomitolo</h2><p class="help">Scegli una categoria e poi il gomitolo che preferisci.</p><div class="categories">${cats.map(c=>`<button type="button" class="category ${sel.category===c?"active":""}" onclick="chooseCategory('${escapeValue(c)}')">${c}</button>`).join("")}</div><div class="yarn-grid">${yarns.map(y=>`<div class="yarn-card ${sel.yarn===y.name?"sel":""}" onclick="chooseYarn('${escapeValue(y.name)}','${escapeValue(y.image)}')"><span class="yarn-tick">✓</span><button class="zoom-btn" onclick="event.stopPropagation();openYarnZoom('${escapeValue(y.image)}','${escapeValue(y.name)}')">+</button><img src="${y.image}" alt="${y.name}"><div class="yarn-name">${y.name}</div></div>`).join("")}</div>`;
+}
+if(step===2){
+const p=product();
+html=`<h2>3. Scegli la dimensione</h2><p class="help">Le dimensioni disponibili dipendono dal modello.</p><div class="grid">${Object.entries(p.sizes).map(([n,v])=>`<div class="opt ${sel.size===n?"sel":""}" onclick="chooseSize('${escapeValue(n)}')"><span class="tick">✓</span><div class="sizebox"><b>${n}</b><small>${v[0]}</small><small>${v[1]>0?"+€"+v[1]:"Prezzo base"}</small></div></div>`).join("")}</div>`;
+}
+$("content").innerHTML=html;
+update();
+controls();
+}
+
+function escapeValue(value){return String(value).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}
+
+function chooseModel(x){
+sel.model=x;
+sel.size=null;
+step=1;
+render();
+}
+
+function chooseCategory(category){
+if(!GOMITOLI[category])return;
+sel.category=category;
+sel.yarn=null;
+sel.yarnImage=null;
+render();
+}
+
+function chooseYarn(name,image){
+sel.yarn=name;
+sel.yarnImage=image;
+render();
+}
+
+function chooseSize(x){
+sel.size=x;
+render();
+}
+
+function update(){
+$("sModel").textContent=sel.model||"—";
+$("sCategory").textContent=sel.category||"—";
+$("sYarn").textContent=sel.yarn||"—";
+$("sSize").textContent=sel.size||"—";
+const p=product();
+let price=p?p.base:0;
+if(p&&sel.size&&p.sizes[sel.size])price+=p.sizes[sel.size][1];
+$("sPrice").textContent=p?"€ "+price:"—";
+$("preview").src=sel.yarnImage||(p?p.image:"");
+}
+
+function controls(){
+const chosen=step===0?sel.model:step===1?sel.yarn:sel.size;
+$("back").disabled=step===0;
+$("next").disabled=!chosen;
+$("next").style.display=step<2?"block":"none";
+$("confirm").style.display=step===2?"block":"none";
+}
+
+function next(){
+const chosen=step===0?sel.model:step===1?sel.yarn:sel.size;
+if(chosen&&step<2){step++;render()}
+}
+
+function prev(){
+if(step>0){step--;render()}
+}
+
+function confirmOrder(){
+$("done").style.display="block";
+$("confirm").disabled=true;
+$("confirm").textContent="Configurazione confermata";
+console.log("Configurazione:",sel);
+}
+
+function openBagInfo(name){
+const p=DATA[name];
+if(!p)return;
+$("modalImage").src=p.image;
+$("modalImage").alt=name;
+$("modalInfo").innerHTML=`<h2>${name}</h2><p>${p.info||"Informazioni non disponibili."}</p>`;
+$("modal").classList.add("open");
+}
+
+function openYarnZoom(image,name){
+$("modalImage").src=image;
+$("modalImage").alt=name;
+$("modalInfo").innerHTML=`<h2>${name}</h2>`;
+$("modal").classList.add("open");
+}
+
+function openGallery(el){
+const img=el.querySelector("img");
+$("modalImage").src=img.src;
+$("modalImage").alt=img.alt;
+$("modalInfo").innerHTML="";
+$("modal").classList.add("open");
+}
+
+function closeModal(event){
+if(!event||event.target===$("modal")||event.target.classList.contains("modal-close"))$("modal").classList.remove("open");
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")$("modal").classList.remove("open");
+});
+
+render();
+</script>
+</body>
+</html>
+```
