@@ -1,150 +1,34 @@
-
+```html
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Invia email</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        button {
-            padding: 12px 25px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #risultato {
-            margin-top: 20px;
-            padding: 12px;
-            display: none;
-        }
-    </style>
+    <title>Test email</title>
 </head>
 
 <body>
 
-    <h1>Invia una email</h1>
+<h1>Test invio email</h1>
 
-    <form
-        id="emailForm"
-        action="http://teststitched.infinityfree.io/send.php"
-        method="POST"
-    >
+<form action="http://teststitched.infinityfree.io/send.php" method="POST">
 
-        <label for="email">
-            Email destinatario:
-        </label>
+    <label>Email:</label>
+    <input type="email" name="email" required>
 
-        <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="nome@example.com"
-            required
-        >
+    <br><br>
 
-        <label for="messaggio">
-            Messaggio:
-        </label>
+    <label>Messaggio:</label>
+    <br>
+    <textarea name="messaggio" rows="6" required></textarea>
 
-        <textarea
-            id="messaggio"
-            name="messaggio"
-            rows="6"
-            placeholder="Scrivi il tuo messaggio..."
-            required
-        ></textarea>
+    <br><br>
 
-        <button type="submit" id="submitButton">
-            Invia email
-        </button>
+    <button type="submit">
+        Invia
+    </button>
 
-    </form>
-
-    <div id="risultato"></div>
-
-    <script>
-        const form = document.getElementById("emailForm");
-        const button = document.getElementById("submitButton");
-        const risultato = document.getElementById("risultato");
-
-        form.addEventListener("submit", async function(event) {
-
-            event.preventDefault();
-
-            button.disabled = true;
-            button.textContent = "Invio in corso...";
-
-            risultato.style.display = "none";
-
-            try {
-
-                const response = await fetch(form.action, {
-                    method: "POST",
-                    body: new FormData(form)
-                });
-
-                const testo = await response.text();
-
-                if (!response.ok) {
-                    throw new Error(
-                        "Errore HTTP " + response.status
-                    );
-                }
-
-                risultato.textContent = testo;
-                risultato.style.display = "block";
-
-                form.reset();
-
-            } catch (errore) {
-
-                console.error(errore);
-
-                risultato.textContent =
-                    "Si è verificato un errore durante l'invio.";
-
-                risultato.style.display = "block";
-
-            } finally {
-
-                button.disabled = false;
-                button.textContent = "Invia email";
-            }
-
-        });
-    </script>
+</form>
 
 </body>
 </html>
+```
