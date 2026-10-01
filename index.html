@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="it">
 <head>
@@ -74,35 +73,37 @@ footer{background:#25231f;color:#fff;text-align:center;padding:40px 20px;font-si
 </div>
 </section>
 
+
 <section id="order" class="page">
 <div class="order-wrap">
+
 <div class="order-head">
 <h1>Configura la tua borsa</h1>
 <p>Scegli ogni dettaglio e crea la tua combinazione.</p>
 </div>
+
 <div class="steps" id="steps"></div>
-<div class="layout">
+
 <main class="panel">
 <div id="content"></div>
+
 <div class="actions">
 <button class="back" id="back" onclick="prev()">Indietro</button>
 <button class="next" id="next" onclick="next()">Continua</button>
 </div>
-<div class="done" id="done"><b>Configurazione completata!</b><br>La tua configurazione è stata registrata.</div>
-</main>
-<aside class="summary">
-<h3>Riepilogo</h3>
-<div class="preview"><img id="preview" alt="Anteprima"></div>
-<div class="row"><span>Modello</span><b id="sModel">—</b></div>
-<div class="row"><span>Categoria</span><b id="sCategory">—</b></div>
-<div class="row"><span>Gomitolo</span><b id="sYarn">—</b></div>
-<div class="row"><span>Dimensione</span><b id="sSize">—</b></div>
-<div class="price"><span>Prezzo</span><span id="sPrice">—</span></div>
-<button class="confirm" id="confirm" onclick="confirmOrder()" style="width:100%;display:none">Conferma configurazione</button>
-</aside>
+
+<div class="done" id="done">
+<b>Configurazione completata!</b><br>
+La tua configurazione è stata registrata.
 </div>
+
+</main>
+
 </div>
 </section>
+
+
+
 
 <section id="about" class="page">
 <div class="about">
@@ -129,8 +130,16 @@ footer{background:#25231f;color:#fff;text-align:center;padding:40px 20px;font-si
 </div>
 
 <script>
-function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");document.getElementById("navLinks").classList.remove("open");window.scrollTo({top:0,behavior:"smooth"})}
-function toggleMenu(){document.getElementById("navLinks").classList.toggle("open")}
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.getElementById("navLinks").classList.remove("open");
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("open");
+}
 
 const GOMITOLI={
 "Kaleido":[
@@ -142,6 +151,7 @@ const GOMITOLI={
 {name:"Wiggly 004",image:"Gomitoli/Kaleido/Kaleido_oro.jpg"},
 {name:"Wiggly 009",image:"Gomitoli/Kaleido/Kaleido_blu.jpg"}
 ],
+
 "Thai":[
 {name:"Wiggly 098",image:"Gomitoli/Thai/Thai_bianco.jpg"},
 {name:"Wiggly 105",image:"Gomitoli/Thai/Thai_nero.jpg"},
@@ -162,6 +172,7 @@ const GOMITOLI={
 {name:"Wiggly 058",image:"Gomitoli/Thai/Thai437.jpg"},
 {name:"Wiggly 075",image:"Gomitoli/Thai/Thai482.jpg"}
 ],
+
 "Lycra":[
 {name:"Wiggly 098",image:"Gomitoli/Wiggly098.jpg"},
 {name:"Wiggly 105",image:"Gomitoli/Wiggly105.jpg"},
@@ -185,6 +196,7 @@ const GOMITOLI={
 {name:"Wiggly 004",image:"Gomitoli/Wiggly004.jpg"},
 {name:"Wiggly 009",image:"Gomitoli/Wiggly009.jpg"}
 ],
+
 "Eco Daino":[
 {name:"Wiggly 307",image:"Gomitoli/EcoDaino/EcoDaino254.jpg"},
 {name:"Wiggly 361",image:"Gomitoli/EcoDaino/EcoDaino255.jpg"},
@@ -196,6 +208,7 @@ const GOMITOLI={
 {name:"Wiggly 075",image:"Gomitoli/EcoDaino/EcoDaino264.jpg"},
 {name:"Wiggly 002",image:"Gomitoli/EcoDaino/EcoDaino265.jpg"}
 ],
+
 "Eco Pelle":[
 {name:"Wiggly 307",image:"Gomitoli/EcoPelle/EcoPelle601.jpg"},
 {name:"Wiggly 361",image:"Gomitoli/EcoPelle/EcoPelle605.jpg"},
@@ -203,144 +216,593 @@ const GOMITOLI={
 {name:"Wiggly 023",image:"Gomitoli/EcoPelle/EcoPelle607.jpg"},
 {name:"Wiggly 044",image:"Gomitoli/EcoPelle/EcoPelle608.jpg"},
 {name:"Wiggly 046",image:"Gomitoli/EcoPelle/EcoPelle609.jpg"}
-]};
-
-const DATA={
-"Napoli":{base:89,image:"Modelli/modello.png",info:"La borsa Napoli è un modello elegante e versatile, realizzato artigianalmente. Scegli il gomitolo e la dimensione per personalizzare la tua borsa.",sizes:{"Piccola":["20 × 15 cm",0],"Media":["28 × 20 cm",15],"Grande":["35 × 25 cm",30]}},
-"Venezia":{base:69,image:"Modelli/modello1.png",info:"La borsa Venezia è un modello compatto e raffinato, ideale per un look elegante e quotidiano.",sizes:{"Unica":["22 × 14 cm",0]}},
-"Milano":{base:109,image:"Modelli/modello3.png",info:"La borsa Milano è un modello più capiente e strutturato, pensato per chi desidera spazio senza rinunciare allo stile.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
-"Roma":{base:109,image:"Modelli/modello4.jpg",info:"La borsa Roma combina linee classiche e praticità, con diverse possibilità di personalizzazione.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
-"Taormina":{base:109,image:"Modelli/modello5.png",info:"La borsa Taormina è caratterizzata da uno stile elegante e contemporaneo.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}},
-"Modena":{base:109,image:"Modelli/modello6.png",info:"La borsa Modena è un modello versatile e capiente, adatto a diverse occasioni.",sizes:{"Media":["35 × 30 cm",0],"Grande":["45 × 38 cm",20]}}
+]
 };
 
-const labels=["Modello","Gomitolo","Dimensione"];
+const DATA={
+"Napoli":{
+base:89,
+image:"Modelli/modello.png",
+info:"La borsa Napoli è un modello elegante e versatile, realizzato artigianalmente. Scegli il gomitolo per personalizzare la tua borsa."
+},
+
+"Venezia":{
+base:69,
+image:"Modelli/modello1.png",
+info:"La borsa Venezia è un modello compatto e raffinato, ideale per un look elegante e quotidiano."
+},
+
+"Milano":{
+base:109,
+image:"Modelli/modello3.png",
+info:"La borsa Milano è un modello più capiente e strutturato, pensato per chi desidera spazio senza rinunciare allo stile."
+},
+
+"Roma":{
+base:109,
+image:"Modelli/modello4.jpg",
+info:"La borsa Roma combina linee classiche e praticità, con diverse possibilità di personalizzazione."
+},
+
+"Taormina":{
+base:109,
+image:"Modelli/modello5.png",
+info:"La borsa Taormina è caratterizzata da uno stile elegante e contemporaneo."
+},
+
+"Modena":{
+base:109,
+image:"Modelli/modello6.png",
+info:"La borsa Modena è un modello versatile e capiente, adatto a diverse occasioni."
+}
+};
+
+const labels=["Modello","Gomitolo","Riepilogo"];
+
 let step=0;
-let sel={model:null,category:"Categoria 1",yarn:null,yarnImage:null,size:null};
+
+let sel={
+model:null,
+category:"Kaleido",
+yarn:null,
+yarnImage:null
+};
+
 const $=id=>document.getElementById(id);
+
 const product=()=>sel.model?DATA[sel.model]:null;
 
-function renderSteps(){$("steps").innerHTML=labels.map((x,i)=>`<div class="step ${i===step?"active":""}">${i+1}. ${x}</div>`).join("")}
 
-function option(name,meta,img,selected,fn,info){return `<div class="opt ${selected?"sel":""}" onclick="${fn}"><span class="tick">✓</span>${img?`<img src="${img}" alt="${name}">`:""}${info?`<button class="info-btn" onclick="event.stopPropagation();openBagInfo('${escapeValue(name)}')">i</button>`:""}<div class="name">${name}</div><div class="meta">${meta||""}</div></div>`}
+function renderSteps(){
+
+$("steps").innerHTML=labels.map((x,i)=>`
+<div class="step ${i===step?"active":""}">
+${i+1}. ${x}
+</div>
+`).join("");
+
+}
+
+
+function option(name,meta,img,selected,fn,info){
+
+return `
+<div class="opt ${selected?"sel":""}" onclick="${fn}">
+
+<span class="tick">✓</span>
+
+${img?`
+<img src="${img}" alt="${name}">
+`:""}
+
+${info?`
+<button
+class="info-btn"
+onclick="event.stopPropagation();openBagInfo('${escapeValue(name)}')">
+i
+</button>
+`:""}
+
+<div class="name">${name}</div>
+
+<div class="meta">${meta||""}</div>
+
+</div>
+`;
+
+}
+
 
 function render(){
+
 renderSteps();
+
 let html="";
-if(step===0)html=`<h2>1. Scegli il modello</h2><p class="help">Clicca sulla borsa che preferisci.</p><div class="grid">${Object.entries(DATA).map(([n,p])=>option(n,"A partire da €"+p.base,p.image,sel.model===n,`chooseModel('${escapeValue(n)}')`,p.info)).join("")}</div>`;
-if(step===1){
-const cats=Object.keys(GOMITOLI);
-if(!sel.category||!GOMITOLI[sel.category])sel.category=cats[0];
-const yarns=GOMITOLI[sel.category];
-html=`<h2>2. Scegli il gomitolo</h2><p class="help">Scegli una categoria e poi il gomitolo che preferisci.</p><div class="categories">${cats.map(c=>`<button type="button" class="category ${sel.category===c?"active":""}" onclick="chooseCategory('${escapeValue(c)}')">${c}</button>`).join("")}</div><div class="yarn-grid">${yarns.map(y=>`<div class="yarn-card ${sel.yarn===y.name?"sel":""}" onclick="chooseYarn('${escapeValue(y.name)}','${escapeValue(y.image)}')"><span class="yarn-tick">✓</span><button class="zoom-btn" onclick="event.stopPropagation();openYarnZoom('${escapeValue(y.image)}','${escapeValue(y.name)}')">+</button><img src="${y.image}" alt="${y.name}"><div class="yarn-name">${y.name}</div></div>`).join("")}</div>`;
-}
-if(step===2){
-const p=product();
-html=`<h2>3. Scegli la dimensione</h2><p class="help">Le dimensioni disponibili dipendono dal modello.</p><div class="grid">${Object.entries(p.sizes).map(([n,v])=>`<div class="opt ${sel.size===n?"sel":""}" onclick="chooseSize('${escapeValue(n)}')"><span class="tick">✓</span><div class="sizebox"><b>${n}</b><small>${v[0]}</small><small>${v[1]>0?"+€"+v[1]:"Prezzo base"}</small></div></div>`).join("")}</div>`;
-}
-$("content").innerHTML=html;
-update();
-controls();
+
+
+/* =========================
+   STEP 1 — MODELLO
+========================= */
+
+if(step===0){
+
+html=`
+
+<h2>1. Scegli il modello</h2>
+
+<p class="help">
+Clicca sulla borsa che preferisci.
+</p>
+
+<div class="grid">
+
+${Object.entries(DATA).map(([n,p])=>
+
+option(
+n,
+"A partire da €"+p.base,
+p.image,
+sel.model===n,
+`chooseModel('${escapeValue(n)}')`,
+p.info
+)
+
+).join("")}
+
+</div>
+
+`;
+
 }
 
-function escapeValue(value){return String(value).replace(/\\/g,"\\\\").replace(/'/g,"\\'")}
+
+/* =========================
+   STEP 2 — GOMITOLO
+========================= */
+
+if(step===1){
+
+const cats=Object.keys(GOMITOLI);
+
+if(!sel.category || !GOMITOLI[sel.category]){
+sel.category=cats[0];
+}
+
+const yarns=GOMITOLI[sel.category];
+
+html=`
+
+<h2>2. Scegli il gomitolo</h2>
+
+<p class="help">
+Scegli una categoria e poi il gomitolo che preferisci.
+</p>
+
+<div class="categories">
+
+${cats.map(c=>`
+
+<button
+type="button"
+class="category ${sel.category===c?"active":""}"
+onclick="chooseCategory('${escapeValue(c)}')">
+
+${c}
+
+</button>
+
+`).join("")}
+
+</div>
+
+<div class="yarn-grid">
+
+${yarns.map(y=>`
+
+<div
+class="yarn-card ${sel.yarn===y.name && sel.yarnImage===y.image?"sel":""}"
+onclick="chooseYarn('${escapeValue(y.name)}','${escapeValue(y.image)}')">
+
+<span class="yarn-tick">✓</span>
+
+<button
+class="zoom-btn"
+onclick="event.stopPropagation();openYarnZoom('${escapeValue(y.image)}','${escapeValue(y.name)}')">
++
+</button>
+
+<img
+src="${y.image}"
+alt="${y.name}">
+
+<div class="yarn-name">
+${y.name}
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   STEP 3 — RIEPILOGO
+========================= */
+
+if(step===2){
+
+const p=product();
+
+html=`
+
+<h2>3. Riepilogo</h2>
+
+<p class="help">
+Controlla la tua configurazione prima di confermare.
+</p>
+
+<div class="grid">
+
+<!-- FOTO MODELLO -->
+
+<div>
+
+<div class="preview">
+
+<img
+src="${p?p.image:""}"
+alt="${sel.model||"Modello"}">
+
+</div>
+
+<div class="name">
+Modello
+</div>
+
+<div class="meta">
+${sel.model||"—"}
+</div>
+
+</div>
+
+
+<!-- FOTO GOMITOLO -->
+
+<div>
+
+<div class="preview">
+
+<img
+src="${sel.yarnImage||""}"
+alt="${sel.yarn||"Gomitolo"}">
+
+</div>
+
+<div class="name">
+Gomitolo
+</div>
+
+<div class="meta">
+${sel.yarn||"—"}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="row">
+<span>Modello</span>
+<b>${sel.model||"—"}</b>
+</div>
+
+<div class="row">
+<span>Gomitolo</span>
+<b>${sel.yarn||"—"}</b>
+</div>
+
+<div class="price">
+<span>Prezzo</span>
+<span>€ ${p?p.base:"—"}</span>
+</div>
+
+<button
+class="confirm"
+id="confirm"
+onclick="confirmOrder()"
+style="width:100%;margin-top:10px">
+
+Conferma configurazione
+
+</button>
+
+`;
+
+}
+
+
+$("content").innerHTML=html;
+
+controls();
+
+}
+
+
+function escapeValue(value){
+
+return String(value)
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'");
+
+}
+
+
+/* =========================
+   SELEZIONE MODELLO
+========================= */
 
 function chooseModel(x){
-sel.model=x;
-sel.size=null;
-step=1;
-render();
-}
 
-function chooseCategory(category){
-if(!GOMITOLI[category])return;
-sel.category=category;
+sel.model=x;
+
 sel.yarn=null;
 sel.yarnImage=null;
+
+step=1;
+
+$("done").style.display="none";
+
 render();
+
 }
+
+
+/* =========================
+   SELEZIONE CATEGORIA
+========================= */
+
+function chooseCategory(category){
+
+if(!GOMITOLI[category])return;
+
+sel.category=category;
+
+sel.yarn=null;
+sel.yarnImage=null;
+
+render();
+
+}
+
+
+/* =========================
+   SELEZIONE GOMITOLO
+========================= */
 
 function chooseYarn(name,image){
+
 sel.yarn=name;
 sel.yarnImage=image;
+
 render();
+
 }
 
-function chooseSize(x){
-sel.size=x;
-render();
-}
 
-function update(){
-$("sModel").textContent=sel.model||"—";
-$("sCategory").textContent=sel.category||"—";
-$("sYarn").textContent=sel.yarn||"—";
-$("sSize").textContent=sel.size||"—";
-const p=product();
-let price=p?p.base:0;
-if(p&&sel.size&&p.sizes[sel.size])price+=p.sizes[sel.size][1];
-$("sPrice").textContent=p?"€ "+price:"—";
-$("preview").src=sel.yarnImage||(p?p.image:"");
-}
+/* =========================
+   CONTROLLI
+========================= */
 
 function controls(){
-const chosen=step===0?sel.model:step===1?sel.yarn:sel.size;
-$("back").disabled=step===0;
-$("next").disabled=!chosen;
-$("next").style.display=step<2?"block":"none";
-$("confirm").style.display=step===2?"block":"none";
+
+const back=$("back");
+const nextButton=$("next");
+
+
+if(step===0){
+
+back.disabled=true;
+
+nextButton.disabled=!sel.model;
+
+nextButton.style.display="block";
+
 }
+
+
+if(step===1){
+
+back.disabled=false;
+
+nextButton.disabled=!sel.yarn;
+
+nextButton.style.display="block";
+
+}
+
+
+if(step===2){
+
+back.disabled=false;
+
+nextButton.style.display="none";
+
+}
+
+}
+
+
+/* =========================
+   AVANTI
+========================= */
 
 function next(){
-const chosen=step===0?sel.model:step===1?sel.yarn:sel.size;
-if(chosen&&step<2){step++;render()}
-}
 
-function prev(){
-if(step>0){step--;render()}
-}
+if(step===0 && sel.model){
 
-function confirmOrder(){
-$("done").style.display="block";
-$("confirm").disabled=true;
-$("confirm").textContent="Configurazione confermata";
-console.log("Configurazione:",sel);
-}
-
-function openBagInfo(name){
-const p=DATA[name];
-if(!p)return;
-$("modalImage").src=p.image;
-$("modalImage").alt=name;
-$("modalInfo").innerHTML=`<h2>${name}</h2><p>${p.info||"Informazioni non disponibili."}</p>`;
-$("modal").classList.add("open");
-}
-
-function openYarnZoom(image,name){
-$("modalImage").src=image;
-$("modalImage").alt=name;
-$("modalInfo").innerHTML=`<h2>${name}</h2>`;
-$("modal").classList.add("open");
-}
-
-function openGallery(el){
-const img=el.querySelector("img");
-$("modalImage").src=img.src;
-$("modalImage").alt=img.alt;
-$("modalInfo").innerHTML="";
-$("modal").classList.add("open");
-}
-
-function closeModal(event){
-if(!event||event.target===$("modal")||event.target.classList.contains("modal-close"))$("modal").classList.remove("open");
-}
-
-document.addEventListener("keydown",e=>{
-if(e.key==="Escape")$("modal").classList.remove("open");
-});
+step=1;
 
 render();
+
+return;
+
+}
+
+
+if(step===1 && sel.yarn){
+
+step=2;
+
+render();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+}
+
+
+/* =========================
+   INDIETRO
+========================= */
+
+function prev(){
+
+if(step>0){
+
+step--;
+
+render();
+
+}
+
+}
+
+
+/* =========================
+   CONFERMA
+========================= */
+
+function confirmOrder(){
+
+const confirmButton=$("confirm");
+
+if(confirmButton){
+
+confirmButton.disabled=true;
+confirmButton.textContent="Configurazione confermata";
+
+}
+
+$("done").style.display="block";
+
+console.log("Configurazione:",sel);
+
+}
+
+
+/* =========================
+   INFO MODELLO
+========================= */
+
+function openBagInfo(name){
+
+const p=DATA[name];
+
+if(!p)return;
+
+$("modalImage").src=p.image;
+$("modalImage").alt=name;
+
+$("modalInfo").innerHTML=`
+<h2>${name}</h2>
+<p>${p.info||"Informazioni non disponibili."}</p>
+`;
+
+$("modal").classList.add("open");
+
+}
+
+
+/* =========================
+   ZOOM GOMITOLO
+========================= */
+
+function openYarnZoom(image,name){
+
+$("modalImage").src=image;
+$("modalImage").alt=name;
+
+$("modalInfo").innerHTML=`
+<h2>${name}</h2>
+`;
+
+$("modal").classList.add("open");
+
+}
+
+
+/* =========================
+   GALLERIA
+========================= */
+
+function openGallery(el){
+
+const img=el.querySelector("img");
+
+$("modalImage").src=img.src;
+$("modalImage").alt=img.alt;
+
+$("modalInfo").innerHTML="";
+
+$("modal").classList.add("open");
+
+}
+
+
+/* =========================
+   CHIUSURA MODALE
+========================= */
+
+function closeModal(event){
+
+if(
+!event ||
+event.target===$("modal") ||
+event.target.classList.contains("modal-close")
+){
+
+$("modal").classList.remove("open");
+
+}
+
+}
+
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+
+$("modal").classList.remove("open");
+
+}
+
+});
+
+
+render();
+
 </script>
+
+
 </body>
 </html>
-```
+
