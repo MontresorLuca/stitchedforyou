@@ -292,15 +292,40 @@ const btn=document.querySelector(".confirm");
 if(btn){btn.disabled=true;btn.textContent="Salvataggio..."}
 
 try{
-const response=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)});
-const result=await response.json().catch(()=>({}));
-if(!response.ok||result.success!==true)throw new Error(result.message||"Errore durante il salvataggio");
-salvato=true;
-showOrderSuccess(order)
+    const response=await fetch(API,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(order)
+    });
+
+    const raw=await response.text();
+
+    console.log("STATUS:",response.status);
+    console.log("RISPOSTA PHP:",raw);
+
+    let result;
+
+    try{
+        result=JSON.parse(raw);
+    }catch(e){
+        throw new Error("Il PHP non ha restituito JSON. Risposta: "+raw.substring(0,500));
+    }
+
+    if(!response.ok||result.success!==true){
+        throw new Error(result.message||"Errore durante il salvataggio");
+    }
+
+    salvato=true;
+    showOrderSuccess(order);
+
 }catch(error){
-console.error(error);
-alert("Non è stato possibile salvare l'ordine. Controlla il collegamento al database.");
-if(btn){btn.disabled=false;btn.textContent="Conferma ordine"}
+    console.error("ERRORE SALVATAGGIO:",error);
+    alert(error.message);
+
+    if(btn){
+        btn.disabled=false;
+        btn.textContent="Conferma ordine";
+    }
 }
 }
 
