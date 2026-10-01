@@ -1,0 +1,46 @@
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invia email</title>
+</head>
+
+<body>
+
+    <h1>Invia una email</h1>
+
+    <form action="send.php" method="POST">
+
+        <label for="email">Email destinatario:</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            required
+        >
+
+        <br><br>
+
+        <label for="messaggio">Messaggio:</label>
+        <br>
+
+        <textarea
+            id="messaggio"
+            name="messaggio"
+            rows="6"
+            required
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Invia email
+        </button>
+
+    </form>
+
+</body>
+</html>
+```
